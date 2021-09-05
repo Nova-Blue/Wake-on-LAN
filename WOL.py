@@ -1,7 +1,7 @@
 import socket
 import ipaddress
 
-class WOL:
+class WOLClient:
 
     _PORT = 9
     _MAC_REPEAT_COUNT = 16
@@ -25,7 +25,7 @@ class WOL:
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
         for i in range(burst_size):
-            sock.sendto(payload_bytes, (self._broadcast_addr, WOL._PORT))
+            sock.sendto(payload_bytes, (self._broadcast_addr, WOLClient._PORT))
 
         sock.close()
 
@@ -42,10 +42,10 @@ class WOL:
         # a WOL packet's payload starts with a prefix followed by the
         # target device's MAC address a specified number of times
         
-        payload_bytes = bytearray.fromhex(WOL._PAYLOAD_HEX_PREFIX)   
+        payload_bytes = bytearray.fromhex(WOLClient._PAYLOAD_HEX_PREFIX)   
         mac_bytes = bytes.fromhex(self._mac_addr.replace(":", ""))
         
-        for i in range(WOL._MAC_REPEAT_COUNT):
+        for i in range(WOLClient._MAC_REPEAT_COUNT):
             payload_bytes.extend(mac_bytes)
                 
         return payload_bytes
