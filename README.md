@@ -10,7 +10,7 @@ Usage is very simple:
 from WOL import WOLClient
 
 #               Valid Local IP    Subnet Mask       MAC Address
-wol = WOLClient('192.168.1.12', '255.255.255.0', '40:8D:5C:58:87:2F')
+wol = WOLClient('192.168.1.12', '255.255.255.0', '3C:54:61:88:C1:E4')
 wol.wake()
 
 ```
